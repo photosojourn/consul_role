@@ -6,12 +6,14 @@
     owner: "{{ consul_user }}"
     group: "{{ consul_group }}"
   notify: restart consul
+  become: true
 
 - name: Consul | Copy logrotate conf
   template:
     src: "{{ consul_logrotate_template_path }}"
     dest: /etc/logrotate.d/consul
     mode: 0644
+  become: true
 
 - name: Consul | Copy consul.service file
   template:
@@ -22,3 +24,4 @@
     owner: root
     group: root
   notify: restart consul
+  become: true

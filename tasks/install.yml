@@ -13,12 +13,14 @@
 - name: Consul | Ensure Consul group
   group:
     name: "{{ consul_group }}"
+  become: true
 
 - name: Consul | Ensure Consul user
   user:
     name: "{{ consul_user }}"
     group: "{{ consul_group }}"
     createhome: no
+  become: true
 
 - name: Consul | Ensure Consul skeleton path
   file:
@@ -31,6 +33,7 @@
     - "{{ consul_configdir }}"
     - "{{ consul_datadir }}"
     - "{{ consul_logdir }}"
+  become: true
 
 - name: Consul | Download and extract Consul
   unarchive:
@@ -40,9 +43,11 @@
     group: "{{ consul_group }}"
     remote_src: yes
   notify: restart consul
+  become: true
 
 - name: Consul | Link binary
   file:
     src: "{{ consul_bindir }}/consul"
     dest: /usr/bin/consul
     state: link
+  become: true
