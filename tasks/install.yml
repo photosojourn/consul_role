@@ -42,7 +42,6 @@
     owner: "{{ consul_user }}"
     group: "{{ consul_group }}"
     remote_src: yes
-  notify: restart consul
   become: true
 
 - name: Consul | Link binary
