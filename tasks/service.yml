@@ -4,5 +4,5 @@
     name: consul
     enabled: true
     daemon_reload: true
-    state: started
+    state: "{{ consul_service_state }}"
   become: true

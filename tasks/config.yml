@@ -5,7 +5,6 @@
     dest: "{{ consul_configdir }}/consul.json"
     owner: "{{ consul_user }}"
     group: "{{ consul_group }}"
-  notify: restart consul
   become: true
 
 - name: Consul | Copy logrotate conf
@@ -23,5 +22,4 @@
     mode: 0644
     owner: root
     group: root
-  notify: restart consul
   become: true
